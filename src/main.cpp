@@ -21,6 +21,10 @@ int main() {
 
     bn::fixed jump_strength = 1.3;
 
+    int minimum_x = -110;
+    int maximum_x = 110;
+    int minimum_y = -80;
+
     while(true) {
         if(bn::keypad::left_held()) {
             dot.set_x(dot.x() - speed);
@@ -41,5 +45,21 @@ int main() {
             dy = 0;
         }
         bn::core::update();
+
+        if(dot.x() > maximum_x){
+            //horizontal boundary right
+            dot.set_x(maximum_x);
+        }
+
+        if(dot.x() < minimum_x){
+            //horizontal boundary left
+            dot.set_x(minimum_x);
+        }
+
+        if(dot.y() < minimum_y){
+            //vertical boundary up
+            dot.set_y(minimum_y);
+            dy = 0;
+        }
     }
 }
